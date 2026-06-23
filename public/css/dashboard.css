@@ -1,0 +1,90 @@
+body {
+    margin: 0;
+    font-family: Arial;
+    background: linear-gradient(120deg, #ffecd2, #fcb69f);
+}
+
+/* NAVBAR */
+.navbar {
+    background: #2c3e50;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h2 {
+    margin: 0;
+}
+
+.logout {
+    background: #e74c3c;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* CONTAINER */
+.container {
+    padding: 30px;
+}
+
+/* WELCOME CARD */
+.welcome-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.welcome-card h3 {
+    margin: 0;
+    color: #2c3e50;
+}
+
+/* CARDS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h4 {
+    margin: 0;
+    color: #e67e22;
+}
+
+.card p {
+    color: #555;
+    font-size: 14px;
+}
+
+.btn {
+    margin-top: 10px;
+    display: inline-block;
+    padding: 8px 12px;
+    background: #27ae60;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background: #219150;
+}

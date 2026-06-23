@@ -56,12 +56,37 @@
             text-decoration: none;
             color: #2980b9;
         }
+
+        /* 🔥 ALERT STYLES */
+        .alert {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            text-align: center;
+            color: white;
+            font-size: 14px;
+        }
+
+        .success {
+            background-color: #27ae60;
+        }
+
+        .error {
+            background-color: #e74c3c;
+        }
     </style>
 </head>
 <body>
 
 <div class="login-box">
     <h2>Login</h2>
+
+    <!-- 🔥 ALERT MESSAGE ADDED HERE -->
+    {{#if message}}
+        <div class="alert {{type}}">
+            {{message}}
+        </div>
+    {{/if}}
 
     <form action="/login" method="POST">
         <input type="email" name="email" placeholder="Enter email" required>

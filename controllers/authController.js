@@ -1,24 +1,63 @@
+import User from "../models/User.js";
+
+// register page
 export const showRegisterPage = (req, res) => {
     res.render("register");
 };
 
-export const registerUser = (req, res) => {
+// register user
+export const registerUser = async (req, res) => {
     const { name, email, password } = req.body;
 
-    console.log("User registration data:", { name, email, password });
+    try {
+        const existingUser = await User.findOne({ email });
 
-    // redirect to login page with message
-    res.render("login", { message: "User registered successfully. Please log in." });
+        if (existingUser) {
+            return res.render("register", {
+                message: "User already exists"
+            });
+        }
+
+        await User.create({ userName: name, email, password });
+
+        res.render("login", {
+            message: "User registered successfully. Please log in."
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.render("register", { message: "Something went wrong" });
+    }
 };
 
+// login page
 export const showLoginPage = (req, res) => {
     res.render("login");
 };
 
-export const loginUser = (req, res) => {
+// login user
+export const loginUser = async (req, res) => {
     const { email, password } = req.body;
 
-    console.log("User login data:", { email, password });
+    try {
+        const user = await User.findOne({ email });
 
-    res.send("User logged in successfully");
+        if (!user || user.password !== password) {
+            return res.render("login", {
+                message: "Invalid email or password"
+            });
+        }
+
+        req.session.userId = user._id;
+
+        console.log("Login success, redirecting to dashboard...");
+
+        res.redirect("/dashboard");
+
+    } catch (error) {
+        console.log(error);
+        res.render("login", {
+            message: "Server error"
+        });
+    }
 };

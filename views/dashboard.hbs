@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <h2>🍔 Expense Dashboard</h2>
+
+        <form action="/logout" method="POST">
+            <button class="logout">Logout</button>
+        </form>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+
+        <!-- WELCOME SECTION -->
+        <div class="welcome-card">
+            <h3>Welcome, {{name}} 👋</h3>
+            <p>Track your expenses like a pro!</p>
+        </div>
+
+        <!-- CARDS SECTION -->
+        <div class="cards">
+
+            <div class="card">
+                <h4>🍕 Food Expenses</h4>
+                <p>Track your daily food spending easily.</p>
+                <a href="#" class="btn">View</a>
+            </div>
+
+            <div class="card">
+                <h4>🚗 Travel</h4>
+                <p>Monitor your transport costs.</p>
+                <a href="#" class="btn">View</a>
+            </div>
+
+            <div class="card">
+                <h4>🏠 Rent</h4>
+                <p>Keep your rent payments under control.</p>
+                <a href="#" class="btn">View</a>
+            </div>
+
+            <div class="card">
+                <h4>💡 Bills</h4>
+                <p>Manage electricity, water, internet bills.</p>
+                <a href="#" class="btn">View</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
