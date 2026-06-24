@@ -4,6 +4,7 @@ import { fileURLToPath } from "url";
 import hbs from "hbs";
 import dotenv from "dotenv";
 import session from "express-session";
+import { noCache } from "./middlewares/cacheMiddleware.js";
 
 import authRoutes from "./routes/authRoutes.js";
 import connectDB from "./config/db.js";
@@ -40,6 +41,9 @@ app.use(
     },
   })
 );
+
+// cache middleware
+app.use(noCache);
 
 // routes
 app.use("/", authRoutes);

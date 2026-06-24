@@ -61,3 +61,20 @@ export const loginUser = async (req, res) => {
         });
     }
 };
+
+//logout user
+export const logout = (req, res) => {
+    req.session.userId = null;
+    req.session.destroy((err) => {
+        if (err) {
+            console.log(err);
+            return res.redirect("/dashboard");
+        }
+
+        res.clearCookie("connect.sid", {
+            path: "/"
+        });
+
+        return res.redirect("/login");
+    });
+};

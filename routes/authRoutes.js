@@ -1,6 +1,7 @@
 import express from "express";
-import { registerUser,showRegisterPage,showLoginPage,loginUser } from "../controllers/authController.js";
+import { registerUser,showRegisterPage,showLoginPage,loginUser,logout } from "../controllers/authController.js";
 import { isLoggedIn } from "../middlewares/authMiddlewares.js";
+import { noCache } from "../middlewares/cacheMiddleware.js";
 import { dashboard } from "../controllers/dashboardController.js";
 
 
@@ -14,6 +15,7 @@ router.post("/register",registerUser)
 //login routes
 router.get("/login", showLoginPage);
 router.post("/login", loginUser);
-router.get("/dashboard",isLoggedIn,dashboard)
+router.get("/dashboard",noCache,isLoggedIn,dashboard)
+router.post("/logout",logout)
 
 export default router;
