@@ -1,68 +1,103 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>Dashboard</title>
-
-    <!-- External CSS -->
+    <meta charset="UTF-8">
+    <title>Expense Dashboard</title>
     <link rel="stylesheet" href="/css/dashboard.css">
 </head>
-
 <body>
 
-    <!-- NAVBAR -->
-    <div class="navbar">
+<nav class="navbar">
+    <h2>💰 Expense Tracker</h2>
 
-        <h2>🍔 Expense Dashboard</h2>
+    <div>
+        <span>Welcome, {{name}}</span>
 
-        <form action="/logout" method="POST">
-            <button type="submit" class="logout-btn">
-                🚪 Logout
-            </button>
-        </form>
-
+        <a href="/logout" class="logout-btn">
+            Logout
+        </a>
     </div>
+</nav>
 
-    <!-- MAIN CONTAINER -->
-    <div class="container">
+<div class="container">
 
-        <!-- WELCOME SECTION -->
-        <div class="welcome-card">
-            <h3>Welcome, {{name}} 👋</h3>
-            <p>Track your expenses like a pro!</p>
+    <h1>Hello, {{name}} 👋</h1>
+
+    {{> alerts}}
+
+    <div class="cards">
+
+        <div class="card income">
+            <h3>Total Income</h3>
+            <h2>₹ {{totalIncome}}</h2>
         </div>
 
-        <!-- CARDS SECTION -->
-        <div class="cards">
+        <div class="card expense">
+            <h3>Total Expense</h3>
+            <h2>₹ {{totalExpense}}</h2>
+        </div>
 
-            <div class="card">
-                <h4>🍕 Food Expenses</h4>
-                <p>Track your daily food spending easily.</p>
-                <a href="#" class="btn">View</a>
-            </div>
+        <div class="card balance">
+            <h3>Balance</h3>
+            <h2>₹ {{balance}}</h2>
+        </div>
 
-            <div class="card">
-                <h4>🚗 Travel</h4>
-                <p>Monitor your transport costs.</p>
-                <a href="#" class="btn">View</a>
-            </div>
-
-            <div class="card">
-                <h4>🏠 Rent</h4>
-                <p>Keep your rent payments under control.</p>
-                <a href="#" class="btn">View</a>
-            </div>
-
-            <div class="card">
-                <h4>💡 Bills</h4>
-                <p>Manage electricity, water, internet bills.</p>
-                <a href="#" class="btn">View</a>
-            </div>
-
+        <div class="card transaction">
+            <h3>Transactions</h3>
+            <h2>{{expenses.length}}</h2>
         </div>
 
     </div>
+
+    <a href="/expense/add" class="add-btn">
+        + Add Expense
+    </a>
+
+    <h2>Recent Expenses</h2>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        {{#each expenses}}
+
+        <tr>
+
+            <td>{{this.title}}</td>
+
+            <td>{{this.category}}</td>
+
+            <td>₹ {{this.amount}}</td>
+
+            <td>{{this.date}}</td>
+
+            <td>
+
+                <a href="/expense/edit/{{this._id}}">Edit</a>
+
+                <a href="/expense/delete/{{this._id}}">Delete</a>
+
+            </td>
+
+        </tr>
+
+        {{/each}}
+
+        </tbody>
+
+    </table>
+
+</div>
 
 </body>
-
 </html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Transaction</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <h2>💰 Expense Tracker</h2>
+    <a href="/dashboard" class="logout-btn">← Back to Dashboard</a>
+</nav>
+
+<div class="form-container">
+
+    <h2>Edit Transaction</h2>
+
+    {{> alerts}}
+
+    <form action="/expense/edit/{{expense._id}}" method="POST">
+
+        <input type="text" name="title" value="{{expense.title}}" placeholder="Title" required>
+
+        <input type="number" name="amount" value="{{expense.amount}}" placeholder="Amount (₹)" min="1" required>
+
+        <select name="type" required>
+            <option value="income" {{#if (eq expense.type "income")}}selected{{/if}}>Income</option>
+            <option value="expense" {{#if (eq expense.type "expense")}}selected{{/if}}>Expense</option>
+        </select>
+
+        <input type="text" name="category" value="{{expense.category}}" placeholder="Category">
+
+        <input type="date" name="date" value="{{expense.date}}">
+
+        <button type="submit">Update Transaction</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
